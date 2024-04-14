@@ -33,6 +33,12 @@ MainWindow::MainWindow(QWidget *parent)
         "border-radius: 5px;"
         );
 
+    // booked menu button styles
+    ui->bookedMenu->setStyleSheet(
+        "margin-top: 50px;"
+
+        );
+
  /* ######################################################### Styles #######################################################*/
 }
 

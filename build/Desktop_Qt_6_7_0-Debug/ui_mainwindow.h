@@ -29,7 +29,7 @@ public:
     QPushButton *bookedMenu;
     QPushButton *newReserv;
     QPushButton *account;
-    QPushButton *pushButton_4;
+    QPushButton *rooms;
     QStackedWidget *mainContainer;
     QWidget *page;
     QWidget *page_2;
@@ -60,23 +60,27 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         bookedMenu = new QPushButton(topBar);
         bookedMenu->setObjectName("bookedMenu");
+        bookedMenu->setMinimumSize(QSize(0, 50));
 
         horizontalLayout->addWidget(bookedMenu);
 
         newReserv = new QPushButton(topBar);
         newReserv->setObjectName("newReserv");
+        newReserv->setMinimumSize(QSize(0, 50));
 
         horizontalLayout->addWidget(newReserv);
 
         account = new QPushButton(topBar);
         account->setObjectName("account");
+        account->setMinimumSize(QSize(0, 50));
 
         horizontalLayout->addWidget(account);
 
-        pushButton_4 = new QPushButton(topBar);
-        pushButton_4->setObjectName("pushButton_4");
+        rooms = new QPushButton(topBar);
+        rooms->setObjectName("rooms");
+        rooms->setMinimumSize(QSize(0, 50));
 
-        horizontalLayout->addWidget(pushButton_4);
+        horizontalLayout->addWidget(rooms);
 
         mainContainer = new QStackedWidget(centralwidget);
         mainContainer->setObjectName("mainContainer");
@@ -133,7 +137,7 @@ public:
         bookedMenu->setText(QCoreApplication::translate("MainWindow", "Booked Menu", nullptr));
         newReserv->setText(QCoreApplication::translate("MainWindow", "New Reserv", nullptr));
         account->setText(QCoreApplication::translate("MainWindow", "Account", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "Rooms", nullptr));
+        rooms->setText(QCoreApplication::translate("MainWindow", "Rooms", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
