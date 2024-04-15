@@ -53,9 +53,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../../main.cpp \
-		../../mainwindow.cpp moc_mainwindow.cpp
+		../../mainwindow.cpp qrc_resource.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		qrc_resource.o \
 		moc_mainwindow.o
 DIST          = /Qt/6.7.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/Qt/6.7.0/gcc_64/mkspecs/common/unix.conf \
@@ -377,6 +379,7 @@ DIST          = /Qt/6.7.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/Qt/6.7.0/gcc_64/mkspecs/features/qt_config.prf \
 		/Qt/6.7.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/Qt/6.7.0/gcc_64/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/Qt/6.7.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/Qt/6.7.0/gcc_64/mkspecs/features/toolchain.prf \
 		/Qt/6.7.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -731,6 +734,7 @@ Makefile: ../../hotelReserv.pro ../../../../Qt/6.7.0/gcc_64/mkspecs/features/spe
 		../../../../Qt/6.7.0/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/6.7.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/6.7.0/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/6.7.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/6.7.0/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/6.7.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -753,6 +757,7 @@ Makefile: ../../hotelReserv.pro ../../../../Qt/6.7.0/gcc_64/mkspecs/features/spe
 		../../../../Qt/6.7.0/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt/6.7.0/gcc_64/mkspecs/features/lex.prf \
 		../../hotelReserv.pro \
+		../../resource.qrc \
 		../../../../Qt/6.7.0/gcc_64/lib/libQt6Widgets.prl \
 		../../../../Qt/6.7.0/gcc_64/lib/libQt6Gui.prl \
 		../../../../Qt/6.7.0/gcc_64/lib/libQt6Core.prl
@@ -1077,6 +1082,7 @@ Makefile: ../../hotelReserv.pro ../../../../Qt/6.7.0/gcc_64/mkspecs/features/spe
 ../../../../Qt/6.7.0/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/6.7.0/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt/6.7.0/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/6.7.0/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/6.7.0/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/6.7.0/gcc_64/mkspecs/features/default_pre.prf:
@@ -1099,6 +1105,7 @@ Makefile: ../../hotelReserv.pro ../../../../Qt/6.7.0/gcc_64/mkspecs/features/spe
 ../../../../Qt/6.7.0/gcc_64/mkspecs/features/yacc.prf:
 ../../../../Qt/6.7.0/gcc_64/mkspecs/features/lex.prf:
 ../../hotelReserv.pro:
+../../resource.qrc:
 ../../../../Qt/6.7.0/gcc_64/lib/libQt6Widgets.prl:
 ../../../../Qt/6.7.0/gcc_64/lib/libQt6Gui.prl:
 ../../../../Qt/6.7.0/gcc_64/lib/libQt6Core.prl:
@@ -1116,6 +1123,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../../resource.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/6.7.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../main.cpp ../../mainwindow.cpp $(DISTDIR)/
@@ -1143,8 +1151,17 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resource.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resource.cpp
+qrc_resource.cpp: ../../resource.qrc \
+		../../../../Qt/6.7.0/gcc_64/libexec/rcc \
+		../../icons8-account-24.png \
+		../../icons8-living-room-24.png \
+		../../icons8-books-2.png \
+		../../icons8-book-24.png
+	/home/kaveh/Qt/6.7.0/gcc_64/libexec/rcc -name resource ../../resource.qrc -o qrc_resource.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -1363,7 +1380,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1747,8 +1764,26 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../Qt/6.7.0/gcc_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.7.0/gcc_64/include/QtGui/qguiapplication_platform.h \
 		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qtabwidget.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtCore/QVariant \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/QStackedWidget \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qstackedwidget.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/6.7.0/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
+
+qrc_resource.o: qrc_resource.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resource.o qrc_resource.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

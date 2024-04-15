@@ -11,11 +11,12 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,21 +26,21 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QWidget *topBar;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *bookedMenu;
     QPushButton *newReserv;
     QPushButton *account;
     QPushButton *rooms;
+    QPushButton *bookedMenu;
     QStackedWidget *mainContainer;
     QWidget *page;
+    QLabel *roomsList;
+    QTableView *tableView;
     QWidget *page_2;
     QStackedWidget *leftBar;
     QWidget *page_3;
-    QVBoxLayout *verticalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
-    QPushButton *pushButton_5;
+    QPushButton *pushButton_4;
     QWidget *page_4;
 
     void setupUi(QMainWindow *MainWindow)
@@ -54,72 +55,82 @@ public:
         centralwidget->setObjectName("centralwidget");
         topBar = new QWidget(centralwidget);
         topBar->setObjectName("topBar");
-        topBar->setGeometry(QRect(20, 20, 911, 81));
+        topBar->setGeometry(QRect(20, 20, 911, 96));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(topBar->sizePolicy().hasHeightForWidth());
+        topBar->setSizePolicy(sizePolicy);
         topBar->setStyleSheet(QString::fromUtf8(""));
-        horizontalLayout = new QHBoxLayout(topBar);
-        horizontalLayout->setObjectName("horizontalLayout");
-        bookedMenu = new QPushButton(topBar);
-        bookedMenu->setObjectName("bookedMenu");
-        bookedMenu->setMinimumSize(QSize(0, 50));
-
-        horizontalLayout->addWidget(bookedMenu);
-
         newReserv = new QPushButton(topBar);
         newReserv->setObjectName("newReserv");
-        newReserv->setMinimumSize(QSize(0, 50));
-
-        horizontalLayout->addWidget(newReserv);
-
+        newReserv->setGeometry(QRect(260, 10, 150, 101));
+        newReserv->setMinimumSize(QSize(150, 78));
+        newReserv->setMaximumSize(QSize(150, 16777215));
         account = new QPushButton(topBar);
         account->setObjectName("account");
-        account->setMinimumSize(QSize(0, 50));
-
-        horizontalLayout->addWidget(account);
-
+        account->setGeometry(QRect(500, 10, 150, 101));
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(account->sizePolicy().hasHeightForWidth());
+        account->setSizePolicy(sizePolicy1);
+        account->setMinimumSize(QSize(150, 78));
+        account->setMaximumSize(QSize(150, 16777215));
         rooms = new QPushButton(topBar);
         rooms->setObjectName("rooms");
-        rooms->setMinimumSize(QSize(0, 50));
-
-        horizontalLayout->addWidget(rooms);
-
+        rooms->setGeometry(QRect(740, 10, 150, 101));
+        rooms->setMinimumSize(QSize(150, 78));
+        rooms->setMaximumSize(QSize(150, 16777215));
+        bookedMenu = new QPushButton(topBar);
+        bookedMenu->setObjectName("bookedMenu");
+        bookedMenu->setGeometry(QRect(20, 10, 150, 101));
+        sizePolicy1.setHeightForWidth(bookedMenu->sizePolicy().hasHeightForWidth());
+        bookedMenu->setSizePolicy(sizePolicy1);
+        bookedMenu->setMinimumSize(QSize(150, 78));
+        bookedMenu->setMaximumSize(QSize(150, 16777215));
         mainContainer = new QStackedWidget(centralwidget);
         mainContainer->setObjectName("mainContainer");
-        mainContainer->setGeometry(QRect(170, 119, 751, 531));
+        mainContainer->setGeometry(QRect(170, 149, 751, 501));
         mainContainer->setStyleSheet(QString::fromUtf8(""));
         page = new QWidget();
         page->setObjectName("page");
+        roomsList = new QLabel(page);
+        roomsList->setObjectName("roomsList");
+        roomsList->setGeometry(QRect(30, 20, 151, 31));
+        tableView = new QTableView(page);
+        tableView->setObjectName("tableView");
+        tableView->setGeometry(QRect(150, 90, 521, 351));
         mainContainer->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
         mainContainer->addWidget(page_2);
         leftBar = new QStackedWidget(centralwidget);
         leftBar->setObjectName("leftBar");
-        leftBar->setGeometry(QRect(30, 110, 121, 541));
+        leftBar->setGeometry(QRect(30, 130, 121, 521));
         leftBar->setStyleSheet(QString::fromUtf8(""));
         page_3 = new QWidget();
         page_3->setObjectName("page_3");
-        verticalLayout = new QVBoxLayout(page_3);
-        verticalLayout->setObjectName("verticalLayout");
         pushButton = new QPushButton(page_3);
         pushButton->setObjectName("pushButton");
-
-        verticalLayout->addWidget(pushButton);
-
+        pushButton->setGeometry(QRect(0, 80, 121, 40));
+        pushButton->setMinimumSize(QSize(0, 40));
+        pushButton->setMaximumSize(QSize(16777215, 40));
         pushButton_2 = new QPushButton(page_3);
         pushButton_2->setObjectName("pushButton_2");
-
-        verticalLayout->addWidget(pushButton_2);
-
+        pushButton_2->setGeometry(QRect(0, 120, 121, 40));
+        pushButton_2->setMinimumSize(QSize(0, 40));
+        pushButton_2->setMaximumSize(QSize(16777215, 40));
         pushButton_3 = new QPushButton(page_3);
         pushButton_3->setObjectName("pushButton_3");
-
-        verticalLayout->addWidget(pushButton_3);
-
-        pushButton_5 = new QPushButton(page_3);
-        pushButton_5->setObjectName("pushButton_5");
-
-        verticalLayout->addWidget(pushButton_5);
-
+        pushButton_3->setGeometry(QRect(0, 160, 121, 40));
+        pushButton_3->setMinimumSize(QSize(0, 40));
+        pushButton_3->setMaximumSize(QSize(16777215, 40));
+        pushButton_4 = new QPushButton(page_3);
+        pushButton_4->setObjectName("pushButton_4");
+        pushButton_4->setGeometry(QRect(0, 200, 121, 40));
+        pushButton_4->setMinimumSize(QSize(0, 40));
+        pushButton_4->setMaximumSize(QSize(16777215, 40));
         leftBar->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName("page_4");
@@ -134,14 +145,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        bookedMenu->setText(QCoreApplication::translate("MainWindow", "Booked Menu", nullptr));
         newReserv->setText(QCoreApplication::translate("MainWindow", "New Reserv", nullptr));
         account->setText(QCoreApplication::translate("MainWindow", "Account", nullptr));
         rooms->setText(QCoreApplication::translate("MainWindow", "Rooms", nullptr));
+        bookedMenu->setText(QCoreApplication::translate("MainWindow", "Booked Menu", nullptr));
+        roomsList->setText(QCoreApplication::translate("MainWindow", "Rooms List : ", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };
