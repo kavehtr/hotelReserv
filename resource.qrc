@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>icons8-book-24.png</file>
+        <file>icons8-books-2.png</file>
+        <file>icons8-account-24.png</file>
+        <file>icons8-living-room-24.png</file>
+    </qresource>
+</RCC>

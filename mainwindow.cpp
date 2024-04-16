@@ -118,8 +118,11 @@ MainWindow::MainWindow(QWidget *parent)
         );
 
     ui->pushButton->setStyleSheet(
-        "background: #2e2e2e;"
+        "background-color: #2e2e2e;"
         "border-radius: 10px;"
+        "#pushButton:hover {"
+        "background-color: white;"
+        "}"
         );
 
     ui->roomsList->setStyleSheet(

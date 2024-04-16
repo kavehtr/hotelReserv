@@ -64,12 +64,12 @@ public:
         topBar->setStyleSheet(QString::fromUtf8(""));
         newReserv = new QPushButton(topBar);
         newReserv->setObjectName("newReserv");
-        newReserv->setGeometry(QRect(260, 10, 150, 101));
+        newReserv->setGeometry(QRect(380, 10, 150, 101));
         newReserv->setMinimumSize(QSize(150, 78));
         newReserv->setMaximumSize(QSize(150, 16777215));
         account = new QPushButton(topBar);
         account->setObjectName("account");
-        account->setGeometry(QRect(500, 10, 150, 101));
+        account->setGeometry(QRect(560, 10, 150, 101));
         QSizePolicy sizePolicy1(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -84,14 +84,14 @@ public:
         rooms->setMaximumSize(QSize(150, 16777215));
         bookedMenu = new QPushButton(topBar);
         bookedMenu->setObjectName("bookedMenu");
-        bookedMenu->setGeometry(QRect(20, 10, 150, 101));
+        bookedMenu->setGeometry(QRect(200, 10, 150, 101));
         sizePolicy1.setHeightForWidth(bookedMenu->sizePolicy().hasHeightForWidth());
         bookedMenu->setSizePolicy(sizePolicy1);
         bookedMenu->setMinimumSize(QSize(150, 78));
         bookedMenu->setMaximumSize(QSize(150, 16777215));
         mainContainer = new QStackedWidget(centralwidget);
         mainContainer->setObjectName("mainContainer");
-        mainContainer->setGeometry(QRect(170, 149, 751, 501));
+        mainContainer->setGeometry(QRect(170, 139, 751, 511));
         mainContainer->setStyleSheet(QString::fromUtf8(""));
         page = new QWidget();
         page->setObjectName("page");
@@ -116,11 +116,15 @@ public:
         pushButton->setGeometry(QRect(0, 80, 121, 40));
         pushButton->setMinimumSize(QSize(0, 40));
         pushButton->setMaximumSize(QSize(16777215, 40));
+        pushButton->setStyleSheet(QString::fromUtf8(""));
         pushButton_2 = new QPushButton(page_3);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(0, 120, 121, 40));
         pushButton_2->setMinimumSize(QSize(0, 40));
         pushButton_2->setMaximumSize(QSize(16777215, 40));
+        pushButton_2->setStyleSheet(QString::fromUtf8("#pushButton:focus {\n"
+"  background-color: white;\n"
+"}"));
         pushButton_3 = new QPushButton(page_3);
         pushButton_3->setObjectName("pushButton_3");
         pushButton_3->setGeometry(QRect(0, 160, 121, 40));
